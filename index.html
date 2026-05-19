@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Airtel Field Ops</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    
+    <!-- Top App Bar -->
+    <header class="app-header">
+        <div class="header-content">
+            <h1 id="header-title">Observation Report</h1>
+            <button class="icon-btn"><i class="fa-regular fa-bell"></i></button>
+        </div>
+    </header>
+
+    <!-- Main Scrollable Area -->
+    <main class="app-main">
+        
+        <!-- PAGE 1: PMT Observation -->
+        <div id="view-observation" class="page-view active">
+            
+            <div class="card header-card">
+                <h2>PMT Observation Q4 AMJ'26</h2>
+                <p>Fill out the Airtel Bharti PMT Observation Report.</p>
+            </div>
+
+            <form class="dynamic-form" id="form-observation">
+                <div class="card">
+                    <div class="input-wrap">
+                        <label>Email Address</label>
+                        <input type="email" name="email" placeholder="enter@email.com" required>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="input-wrap">
+                        <label>PMT Complete Time</label>
+                        <input type="time" name="time" required>
+                    </div>
+                    <div class="input-wrap mt-4">
+                        <div class="label-row">
+                            <label>PMT Complete Date</label>
+                            <button type="button" class="btn-refetch" onclick="refetchData()"><i class="fa-solid fa-rotate-right"></i> Refetch</button>
+                        </div>
+                        <input type="date" name="date" id="obs-date" required>
+                        <span class="sub-label">Total Nodes for : 0</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="input-wrap">
+                        <label>Select Engineer Name</label>
+                        <select name="engineer" id="obs-engineer" required>
+                            <option value="">Choose an engineer...</option>
+                            <option value="John Doe">John Doe</option>
+                            <option value="Jane Smith">Jane Smith</option>
+                        </select>
+                    </div>
+                    <div class="input-wrap mt-4">
+                        <label>Select Host Name</label>
+                        <select name="host" id="obs-host" required>
+                            <option value="">Choose a host...</option>
+                            <option value="Host Alpha">Host Alpha</option>
+                            <option value="Host Beta">Host Beta</option>
+                        </select>
+                        <span class="sub-label">Total Nodes for : 0</span>
+                    </div>
+                </div>
+
+                <!-- CRQ Details (Dark Card) -->
+                <div class="card dark-card">
+                    <div class="card-title"><i class="fa-solid fa-server"></i> CRQ Details</div>
+                    <div class="data-grid mt-3">
+                        <div class="d-row"><span>CRQ</span> <span id="crq-val">-</span></div>
+                        <div class="d-row"><span>CRQ Create Date</span> <span id="crq-date-val">-</span></div>
+                        <div class="d-row"><span>Work Area</span> <span id="crq-area-val">-</span></div>
+                        <div class="d-row"><span>Final Tier</span> <span id="crq-tier-val">-</span></div>
+                        <div class="d-row"><span>Team Leader</span> <span id="crq-tl-val">-</span></div>
+                        <div class="d-row"><span>Engineer Number</span> <span id="crq-eng-val">-</span></div>
+                        <div class="d-row"><span>Product Name</span> <span id="crq-prod-val">-</span></div>
+                        <div class="d-row"><span>City</span> <span id="crq-city-val">-</span></div>
+                        <div class="d-row"><span>State</span> <span id="crq-state-val">-</span></div>
+                        <div class="d-row"><span>TNG Circle</span> <span id="crq-tng-val">-</span></div>
+                        <div class="d-row"><span>Region</span> <span id="crq-region-val">-</span></div>
+                        <div class="d-row"><span>Address</span> <span id="crq-addr-val">-</span></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <label class="section-title">Upload Photos & Reports</label>
+                    <div class="file-uploader mt-3">
+                        <div class="upload-btn">
+                            <i class="fa-solid fa-cloud-arrow-up"></i> Choose File
+                            <input type="file" name="file" required>
+                        </div>
+                        <span class="file-name">No file chosen</span>
+                    </div>
+                    <p class="helper-text mt-2">Recommended Size: 2~10 MB. <a href="#">Use PDF Compressor</a></p>
+                </div>
+
+                <div class="card">
+                    <label class="section-title">Site Person Details</label>
+                    <div class="chip-group mt-3">
+                        <label class="chip"><input type="radio" name="person_type" value="ISP" checked><span>ISP</span></label>
+                        <label class="chip"><input type="radio" name="person_type" value="NMT"><span>NMT</span></label>
+                        <label class="chip"><input type="radio" name="person_type" value="Local"><span>Local</span></label>
+                        <label class="chip"><input type="radio" name="person_type" value="Tech"><span>Tech</span></label>
+                        <label class="chip"><input type="radio" name="person_type" value="Guard"><span>Guard</span></label>
+                    </div>
+                    
+                    <div class="input-grid mt-4">
+                        <div class="input-wrap">
+                            <label>Name</label>
+                            <input type="text" name="person_name" placeholder="Full name">
+                        </div>
+                        <div class="input-wrap">
+                            <label>Number</label>
+                            <input type="tel" name="person_number" placeholder="Phone">
+                        </div>
+                    </div>
+
+                    <label class="mt-4" style="display:block; font-size:0.9rem; font-weight:500;">Person Available for Signature</label>
+                    <div class="chip-group mt-2">
+                        <label class="chip"><input type="radio" name="signature" value="Yes" checked><span>Yes</span></label>
+                        <label class="chip"><input type="radio" name="signature" value="No"><span>No</span></label>
+                    </div>
+                </div>
+
+                <div class="action-bar">
+                    <button type="submit" class="btn-primary" id="btn-submit-obs" disabled><i class="fa-solid fa-paper-plane"></i> Submit Report</button>
+                    <button type="reset" class="btn-secondary">Clear</button>
+                </div>
+            </form>
+        </div>
+
+
+        <!-- PAGE 2: Attempted Nodes -->
+        <div id="view-attempted" class="page-view">
+            <div class="card header-card">
+                <h2>Attempted Nodes Q3</h2>
+                <p>Record incomplete PMT operations and cancellation reasons.</p>
+            </div>
+            <!-- (Similar form fields omitted for brevity, adding the key difference) -->
+            <form class="dynamic-form" id="form-attempted">
+                <div class="card">
+                    <label class="section-title">Installed at</label>
+                    <div class="chip-group mt-3">
+                        <label class="chip"><input type="radio" name="install_loc" value="SHELTER" checked><span>SHELTER</span></label>
+                        <label class="chip"><input type="radio" name="install_loc" value="REG"><span>REG</span></label>
+                        <label class="chip"><input type="radio" name="install_loc" value="MSC"><span>MSC</span></label>
+                        <label class="chip"><input type="radio" name="install_loc" value="BSC"><span>BSC</span></label>
+                        <label class="chip"><input type="radio" name="install_loc" value="ODC"><span>ODC</span></label>
+                    </div>
+
+                    <div class="input-wrap mt-4">
+                        <label>Reason for Cancellation</label>
+                        <textarea name="cancel_reason" rows="3" placeholder="Enter details..." required></textarea>
+                    </div>
+                </div>
+                
+                <div class="action-bar">
+                    <button type="submit" class="btn-primary"><i class="fa-solid fa-paper-plane"></i> Submit Report</button>
+                    <button type="reset" class="btn-secondary">Clear</button>
+                </div>
+            </form>
+        </div>
+
+
+        <!-- PAGE 3: Conveyance Claim -->
+        <div id="view-conveyance" class="page-view">
+            <div class="card header-card">
+                <h2>Conveyance Claim</h2>
+                <p>Calculate and submit your travel expenses.</p>
+            </div>
+
+            <form class="dynamic-form" id="form-conveyance">
+                
+                <div class="card">
+                    <label class="section-title">Activity Type</label>
+                    <div class="chip-group mt-3">
+                        <label class="chip"><input type="radio" name="act_type" value="PMT" checked><span>PMT</span></label>
+                        <label class="chip"><input type="radio" name="act_type" value="Incident"><span>Incident</span></label>
+                        <label class="chip"><input type="radio" name="act_type" value="Attempted"><span>Attempted</span></label>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <label class="section-title">Travel Locations</label>
+                    <div class="input-wrap mt-3">
+                        <label>FE Base/Current Location</label>
+                        <input type="text" name="fe_loc" placeholder="Starting point" required>
+                    </div>
+                    <div class="input-wrap mt-3">
+                        <label>Airtel Site Location</label>
+                        <input type="text" name="site_loc" placeholder="Destination" required>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <label class="section-title">Expense Details</label>
+                    <div class="chip-group mt-3">
+                        <label class="chip"><input type="radio" name="area_type" id="area-hill" value="Hill"><span>Hill Area</span></label>
+                        <label class="chip"><input type="radio" name="area_type" id="area-nonhill" value="Non-Hill" checked><span>Non-Hill</span></label>
+                    </div>
+
+                    <div class="input-grid mt-4">
+                        <div class="input-wrap">
+                            <label>Total KM</label>
+                            <input type="number" id="calc-km" value="0" min="0" required>
+                        </div>
+                        <div class="input-wrap">
+                            <label>Hotel (₹)</label>
+                            <input type="number" id="calc-hotel" value="0" min="0" required>
+                        </div>
+                    </div>
+
+                    <div class="input-wrap mt-4">
+                        <label>Other Expenses</label>
+                        <div class="input-group">
+                            <select id="calc-other-type">
+                                <option value="">Select type...</option>
+                                <option value="Toll">Toll Tax</option>
+                                <option value="Parking">Parking</option>
+                                <option value="Misc">Miscellaneous</option>
+                            </select>
+                            <input type="number" id="calc-other-amt" placeholder="₹ 0" min="0">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card summary-card">
+                    <h3 class="summary-title">Calculation Breakdown</h3>
+                    <div class="breakdown-list mt-3">
+                        <div class="b-row"><span>Total KM</span> <span class="val"><span id="s-km">0</span> KM</span></div>
+                        <div class="b-row"><span>Area Rate</span> <span class="val">₹<span id="s-rate">3</span>/km</span></div>
+                        <div class="b-row highlight"><span>KM Charges</span> <span class="val">₹<span id="s-km-charge">0.00</span></span></div>
+                        <div class="b-row"><span>Daily Allowance (DA)</span> <span class="val">₹<span id="s-da">0</span></span></div>
+                        <div class="b-row"><span>Extra Expenses</span> <span class="val">₹<span id="s-extra">0.00</span></span></div>
+                    </div>
+                    <div class="total-row mt-3">
+                        <span>Total Amount</span>
+                        <span class="total-val">₹<span id="s-total">0.00</span></span>
+                    </div>
+                    <div class="summary-note mt-3">
+                        <i class="fa-solid fa-circle-info"></i> DA of ₹250 applies if KM &ge; 140. Hill areas calculate at ₹4/km, Normal at ₹3/km.
+                    </div>
+                </div>
+
+                <div class="action-bar">
+                    <button type="submit" class="btn-primary"><i class="fa-solid fa-paper-plane"></i> Submit Claim</button>
+                </div>
+            </form>
+        </div>
+
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active" data-target="view-observation">
+            <i class="fa-solid fa-clipboard-check"></i>
+            <span>Observation</span>
+        </a>
+        <a href="#" class="nav-item" data-target="view-attempted">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span>Attempted</span>
+        </a>
+        <a href="#" class="nav-item" data-target="view-conveyance">
+            <i class="fa-solid fa-car"></i>
+            <span>Conveyance</span>
+        </a>
+    </nav>
+
+    <!-- Overlay Loader -->
+    <div id="loader" class="loader-overlay hidden">
+        <div class="spinner"></div>
+        <p>Syncing Data...</p>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast hidden">Message goes here</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
