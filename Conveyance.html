@@ -1,0 +1,447 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PMT Observation Report - Clone</title>
+    <style>
+        :root {
+            --primary-color: #004080;
+            --bg-color: #dbe2ef;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --border-radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+        }
+
+        /* Banner Card */
+      /* HEADER CARD */
+
+.banner-card{
+    background:white;
+    border-radius:22px;
+    padding:22px 28px;
+    margin-bottom:20px;
+    box-shadow:0 4px 20px rgba(0,0,0,0.06);
+}
+
+/* FLEX ROW */
+
+.banner-content{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+}
+
+/* TITLE */
+
+.banner-card h1{
+    font-size:24px;
+    font-weight:700;
+    color:#0f172a;
+    margin-bottom:4px;
+    line-height:1.2;
+}
+
+/* SUBTITLE */
+
+.banner-card p{
+    font-size:14px;
+    color:#64748b;
+    margin:0;
+}
+
+/* BUTTON */
+
+.btn-back{ 
+    background:#f1f5f9;
+    border:1px solid #cbd5e1;
+    color:#334155;
+    padding:8px 16px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:13px;
+    font-weight:600;
+    text-decoration:none;
+    white-space:nowrap;
+    transition:0.3s;
+}
+
+
+
+        /* Standard Cards */
+        .card {
+            background: var(--card-bg);
+            padding: 24px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .btn-back {
+            background-color: #003366;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #111;
+        }
+
+        h3 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        /* Form Controls */
+        .radio-group {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        input[type="text"], input[type="number"], input[type="date"], select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            background-color: #fafafa;
+        }
+
+        /* Metadata Grid */
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .meta-item span {
+            font-weight: bold;
+            color: #555;
+        }
+
+        /* Calculation Section */
+        .calculation-breakdown {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+        }
+
+        .calculation-breakdown p {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .total-amount {
+            font-size: 1.2rem;
+            color: #d32f2f;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .notes {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 15px;
+            line-height: 1.4;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .btn-submit {
+            background-color:#043343 ;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            flex: 2;
+        }
+
+        .btn-clear {
+            background-color: #022c35;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .btn-fetch {
+            background-color: #cccccc;
+            color: #333;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            margin-left: 10px;
+        }
+
+        .expense-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <form id="conveyanceForm" onsubmit="event.preventDefault();">
+        
+        <div class="banner-card">
+
+    <div class="banner-content">
+
+        <div>
+
+            <h1>
+                Conveyance Form Q4 AMJ'26
+            </h1>
+
+              <p>
+                This form is used to fill your Conveyance Report.
+            </p>
+
+        </div>
+
+        <a href="index.html" class="btn-back">
+            Go Back
+        </a>
+
+    </div>
+
+</div>
+
+        <!-- <div class="card">
+            <p>This form is used to fill your Conveyance Report.</p>
+        </div> -->
+
+        <div class="card">
+            <h2>Type of Activity :</h2>
+            <div class="radio-group">
+                <input type="radio" id="pmt" name="activityType" value="PMT" checked>
+                <label style="display:inline; margin:0;" for="pmt">PMT</label>
+            </div>
+            <div class="radio-group">
+                <input type="radio" id="incident" name="activityType" value="Incident Call">
+                <label style="display:inline; margin:0;" for="incident">Incident Call</label>
+            </div>
+            <div class="radio-group">
+                <input type="radio" id="attempted" name="activityType" value="Attempted PMT">
+                <label style="display:inline; margin:0;" for="attempted">Attempted PMT</label>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="form-group">
+                <label style="display: inline-block;">Activity Complete Date :</label>
+                <button type="button" class="btn-fetch">ReFetch Data</button>
+                <input type="date" id="activityDate" style="margin-top: 8px;">
+            </div>
+
+            <div class="form-group">
+                <label>Select Engineer Name :</label>
+                <select id="engineerName">
+                    <option value="">-- Select Engineer --</option>
+                    <option value="Engineer 1">Engineer 1</option>
+                    <option value="Engineer 2">Engineer 2</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Select Host Name :</label>
+                <select id="hostName">
+                    <option value="">-- Select Host --</option>
+                    <option value="Host 1">Host 1</option>
+                    <option value="Host 2">Host 2</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="meta-grid">
+                <div class="meta-item"><label>CRQ :</label> <input type="text" placeholder="CRQ"></div>
+                <div class="meta-item"><label>CRQ Create Date :</label> <input type="date"></div>
+                <div class="meta-item"><label>Work Area :</label> <input type="text" placeholder="Work Area"></div>
+                <div class="meta-item"><label>Final Tier :</label> <input type="text" placeholder="Final Tier"></div>
+                <div class="meta-item"><label>Team Leader :</label> <input type="text" placeholder="Team Leader"></div>
+                <div class="meta-item"><label>Engineer Number :</label> <input type="text" placeholder="Engineer Number"></div>
+                <div class="meta-item"><label>Product Name :</label> <input type="text" placeholder="Product Name"></div>
+                <div class="meta-item"><label>City :</label> <input type="text" placeholder="City"></div>
+                <div class="meta-item"><label>State :</label> <input type="text" placeholder="State"></div>
+                <div class="meta-item"><label>TNG Circle :</label> <input type="text" placeholder="TNG Circle"></div>
+                <div class="meta-item"><label>Region :</label> <input type="text" placeholder="Region"></div>
+                <div class="meta-item"><label>Address :</label> <input type="text" placeholder="Address"></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Enter Your Lat Long of "From" and "To" locations</h2>
+            <p style="font-size: 0.9rem; margin-bottom: 15px;">Know Your Lat Long <a href="#" style="color: var(--primary-color);">Lat Long</a></p>
+            
+            <div class="form-group">
+                <label>FE Base/Current Location :</label>
+                <input type="text" id="feLocation" placeholder="FE Base/Current Location">
+            </div>
+            <div class="form-group">
+                <label>Airtel Site Location :</label>
+                <input type="text" id="airtelLocation" placeholder="Airtel Site Location">
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Select Type of Area :</h2>
+            <div class="radio-group">
+                <input type="radio" id="hill" name="areaType" value="Hill" onchange="calculateTotal()">
+                <label style="display:inline; margin:0;" for="hill">Hill</label>
+            </div>
+            <div class="radio-group">
+                <input type="radio" id="nonHill" name="areaType" value="Non-Hill" checked style="margin-bottom:15px;" onchange="calculateTotal()">
+                <label style="display:inline; margin:0;" for="nonHill">Non-Hill</label>
+            </div>
+
+            <div class="form-group">
+                <label>Enter Total KM Round Trip :</label>
+                <input type="number" id="totalKm" value="0" min="0" oninput="calculateTotal()">
+            </div>
+
+            <div class="form-group">
+                <label>Hotel Expenses :</label>
+                <input type="number" id="hotelExpenses" value="0" min="0" oninput="calculateTotal()">
+            </div>
+
+            <div class="form-group">
+                <label>Other Expenses :</label>
+                <div class="expense-row">
+                    <select id="expenseType">
+                        <option value="">-- Select Expense Type --</option>
+                        <option value="printout">PMT Checklist Printouts</option>
+                        <option value="toolkit">Toolkit Charges</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <input type="number" id="otherExpenseAmount" value="0" min="0" style="width: 120px;" oninput="calculateTotal()">
+                </div>
+            </div>
+
+            <div class="calculation-breakdown">
+                <h3>Calculation Breakdown</h3>
+                <p><strong>Total KM:</strong> <span id="summaryKm">0</span> KM</p>
+                <p><strong>Area Type:</strong> <span id="summaryArea">Non-Hill</span></p>
+                <p><strong>Rate per KM:</strong> ₹ <span id="summaryRate">3</span></p>
+                <p><strong>KM Charges:</strong> ₹ <span id="summaryKmCharges">0.00</span> (<span id="summaryFormula">0 × 3</span>)</p>
+                <p><strong>Daily Allowance (DA):</strong> ₹ <span id="summaryDa">0</span></p>
+                <p><strong>Hotel Expense:</strong> ₹ <span id="summaryHotel">0</span></p>
+                <p class="total-amount">Total Amount: ₹ <span id="summaryTotal">0.00</span></p>
+            </div>
+
+            <div class="notes">
+                <p><strong>Note:</strong></p>
+                <p>- KM Charges are based on the area type (Hill = ₹4/KM, Normal = ₹3/KM).</p>
+                <p>- DA is ₹250 if KM &ge; 140, else ₹0.</p>
+                <p>- Hotel and other expenses are user inputs.</p>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button type="submit" class="btn-submit">Submit</button>
+            <button type="button" class="btn-clear" onclick="resetForm()">Clear Form</button>
+        </div>
+
+    </form>
+</div>
+
+<script>
+    function calculateTotal() {
+        // Inputs
+        const km = parseFloat(document.getElementById('totalKm').value) || 0;
+        const hotel = parseFloat(document.getElementById('hotelExpenses').value) || 0;
+        const otherExpense = parseFloat(document.getElementById('otherExpenseAmount').value) || 0;
+        const isHill = document.getElementById('hill').checked;
+
+        // Configuration Rules
+        const ratePerKm = isHill ? 4 : 3;
+        const kmCharges = km * ratePerKm;
+        const da = km >= 140 ? 250 : 0;
+        
+        // Total formula calculation
+        const totalAmount = kmCharges + da + hotel + otherExpense;
+
+        // UI Updates
+        document.getElementById('summaryKm').innerText = km;
+        document.getElementById('summaryArea').innerText = isHill ? 'Hill' : 'Non-Hill';
+        document.getElementById('summaryRate').innerText = ratePerKm;
+        document.getElementById('summaryKmCharges').innerText = kmCharges.toFixed(2);
+        document.getElementById('summaryFormula').innerText = `${km} × ${ratePerKm}`;
+        document.getElementById('summaryDa').innerText = da;
+        document.getElementById('summaryHotel').innerText = hotel;
+        document.getElementById('summaryTotal').innerText = totalAmount.toFixed(2);
+    }
+
+    function resetForm() {
+        document.getElementById('conveyanceForm').reset();
+        calculateTotal();
+    }
+
+    // Run calculation once on page initialization
+    window.onload = calculateTotal;
+</script>
+
+</body>
+</html>
+
