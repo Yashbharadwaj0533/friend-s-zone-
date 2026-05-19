@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PMT Observation Report</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style>
+        body{
+            background:#dbe4ec;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        .main-card{
+            background:white;
+            border-radius:22px;
+            padding:24px;
+            box-shadow:0 4px 20px rgba(0,0,0,0.06);
+        }
+
+        .section-title{
+            font-size:24px;
+            font-weight:700;
+            color:#0f172a;
+        }
+
+        .section-subtitle{
+            font-size:14px;
+            color:#64748b;
+            margin-top:6px;
+        }
+
+        .input-label{
+            display:block;
+            font-size:14px;
+            font-weight:600;
+            margin-bottom:8px;
+            color:#334155;
+        }
+
+        .custom-input,
+        .custom-select,
+        .custom-textarea{
+            width:100%;
+            border:1px solid #d1d5db;
+            border-radius:14px;
+            padding:12px 14px;
+            font-size:14px;
+            background:white;
+            transition:0.3s;
+        }
+
+        .custom-input:focus,
+        .custom-select:focus,
+        .custom-textarea:focus{
+            outline:none;
+            border-color:#0f766e;
+            box-shadow:0 0 0 4px rgba(15,118,110,0.12);
+        }
+
+        .info-box{
+            background:#043343;
+            color:white;
+            border-radius:18px;
+            padding:22px;
+        }
+
+        .info-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+            gap:12px;
+            font-size:13px;
+        }
+
+        .top-nav{
+            display:flex;
+            gap:10px;
+            flex-wrap:wrap;
+        }
+
+        .nav-btn{
+            background:#f1f5f9;
+            border:1px solid #cbd5e1;
+            padding:8px 16px;
+            border-radius:10px;
+            font-size:13px;
+            font-weight:600;
+            color:#334155;
+            transition:0.3s;
+            cursor:pointer;
+        }
+
+        .nav-btn:hover{
+            background:#e2e8f0;
+        }
+
+        .upload-box{
+            border:2px dashed #cbd5e1;
+            border-radius:18px;
+            padding:24px;
+            background:#f8fafc;
+        }
+
+        .primary-btn{
+            background:#003b46;
+            color:white;
+            padding:12px 24px;
+            border-radius:14px;
+            font-weight:600;
+            border:none;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .primary-btn:hover{
+            background:#022c35;
+        }
+
+        .secondary-btn{
+            background:#6b7280;
+            color:white;
+            padding:12px 22px;
+            border-radius:14px;
+            font-weight:600;
+            border:none;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .secondary-btn:hover{
+            background:#4b5563;
+        }
+
+        .footer-text{
+            text-align:center;
+            font-size:12px;
+            color:#64748b;
+            margin-top:30px;
+        }
+
+        .radio-label{
+            display:flex;
+            align-items:center;
+            gap:8px;
+            cursor:pointer;
+            font-size:14px;
+            font-weight:500;
+        }
+
+        .divider{
+            border-top:1px solid #e2e8f0;
+            margin-top:20px;
+            padding-top:20px;
+        }
+    </style>
+</head>
+
+<body class="p-4 md:p-8">
+
+<div class="max-w-5xl mx-auto space-y-6">
+
+    <!-- HEADER -->
+
+    <div class="main-card">
+
+        <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
+
+            <div>
+
+                <h1 class="section-title">
+                    PMT Attempted Nodes Q3 JFM'26
+                </h1>
+
+                <p class="section-subtitle">
+                    This form is used to fill out the Airtel Bharti PMT Observation Report.
+                </p>
+
+            </div>
+
+            <div class="top-nav">
+
+    <button class="nav-btn"
+        onclick="window.location.href='index.html'"
+        style="
+            background:#003f52;
+            color:white;
+            border:none;
+            padding:10px 18px;
+            border-radius:8px;
+            cursor:pointer;
+            font-weight:600;
+            transition:0.3s;
+        ">
+        Go Back
+    </button>
+
+</div>
+
+        </div>
+
+    </div>
+
+    <!-- FORM -->
+
+    <form id="pmtReportForm" class="space-y-6">
+
+        <!-- BASIC DETAILS -->
+
+        <div class="main-card space-y-5">
+
+            <div>
+
+                <label class="input-label">
+                    Enter Email <span class="text-red-500">*</span>
+                </label>
+
+                <input type="email"
+                    required
+                    class="custom-input">
+
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+                <div>
+
+                    <label class="input-label">
+                        PMT Complete Time <span class="text-red-500">*</span>
+                    </label>
+
+                    <input type="time"
+                        required
+                        class="custom-input">
+
+                </div>
+
+                <div>
+
+                    <div class="flex justify-between items-center mb-2">
+
+                        <label class="input-label mb-0">
+                            PMT Complete Date <span class="text-red-500">*</span>
+                        </label>
+
+                        <button type="button"
+                            class="text-xs text-cyan-700 font-semibold hover:underline">
+                            [ReFetch Data]
+                        </button>
+
+                    </div>
+
+                    <input type="date"
+                        required
+                        class="custom-input">
+
+                </div>
+
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+                <div>
+
+                    <label class="input-label">
+                        Select Engineer Name :
+                    </label>
+
+                    <select class="custom-select">
+
+                        <option value="">
+                            -- Select --
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div>
+
+                    <label class="input-label">
+                        Select Host Name :
+                    </label>
+
+                    <select class="custom-select">
+
+                        <option value="">
+                            -- Select --
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <!-- NODE INFO -->
+
+            <div class="info-box">
+
+                <h3 class="text-sm font-bold uppercase tracking-wider border-b border-cyan-800 pb-2 mb-4">
+                    Node Information
+                </h3>
+
+                <div class="info-grid">
+
+                    <div><span class="opacity-70 font-medium">CRQ :</span> -</div>
+
+                    <div><span class="opacity-70 font-medium">CRQ Create Date :</span> -</div>
+
+                    <div><span class="opacity-70 font-medium">Work Area :</span> -</div>
+
+                    <div><span class="opacity-70 font-medium">Final Tier :</span> -</div>
+
+                    <div><span class="opacity-70 font-medium">Team Leader :</span> -</div>
+
+                    <div><span class="opacity-70 font-medium">Engineer Number :</span> -</div>
+
+                    <div><span class="opacity-70 font-medium">Product Name :</span> -</div>
+
+                    <div><span class="opacity-70 font-medium">City :</span> -</div>
+
+                    <div><span class="opacity-70 font-medium">State :</span> -</div>
+
+                    <div><span class="opacity-70 font-medium">TNG Circle :</span> -</div>
+
+                    <div><span class="opacity-70 font-medium">Region :</span> -</div>
+
+                    <div class="md:col-span-2">
+                        <span class="opacity-70 font-medium">Address :</span> -
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- INSTALLATION -->
+
+        <div class="main-card">
+
+            <label class="input-label">
+                Installed at Shelter/ODC/MSC/BSC/REG
+                <span class="text-red-500">*</span>
+            </label>
+
+            <div class="flex flex-wrap gap-5 mt-4">
+
+                <label class="radio-label">
+                    <input type="radio" name="installation">
+                    SHELTER
+                </label>
+
+                <label class="radio-label">
+                    <input type="radio" name="installation">
+                    REG
+                </label>
+
+                <label class="radio-label">
+                    <input type="radio" name="installation">
+                    MSC
+                </label>
+
+                <label class="radio-label">
+                    <input type="radio" name="installation">
+                    BSC
+                </label>
+
+                <label class="radio-label">
+                    <input type="radio" name="installation">
+                    ODC
+                </label>
+
+            </div>
+
+            <div class="mt-6">
+
+                <label class="input-label">
+                    Reason for the Cancellation
+                </label>
+
+                <textarea rows="4"
+                    placeholder="Cancellation Reason"
+                    class="custom-textarea"></textarea>
+
+            </div>
+
+        </div>
+
+        <!-- UPLOAD -->
+
+        <div class="main-card">
+
+            <div class="upload-box">
+
+                <h2 class="text-lg font-bold mb-4">
+                    Upload Photos & reports :
+                    <span class="text-red-500">*</span>
+                </h2>
+
+                <div class="flex flex-wrap items-center gap-4">
+
+                    <label class="primary-btn">
+                        Choose File
+                        <input type="file" hidden id="fileField">
+                    </label>
+
+                    <span id="fileLabel"
+                        class="text-sm text-gray-500">
+                        No file chosen
+                    </span>
+
+                </div>
+
+                <div class="text-xs text-gray-500 mt-5">
+
+                    Compress your File from
+
+                    <a href="https://tools.pdf24.org/en/compress-pdf"
+                        target="_blank"
+                        class="text-cyan-700 hover:underline font-semibold">
+
+                        PDF Compressor
+
+                    </a>
+
+                    <p class="text-gray-400 mt-1">
+                        Recommended Size : 2~10 MB, Max : 20 MB.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- SITE DETAILS -->
+
+        <div class="main-card space-y-6">
+
+            <div>
+
+                <label class="input-label">
+                    Site Person Details :
+                    <span class="text-red-500">*</span>
+                </label>
+
+                <div class="flex flex-wrap gap-5 mt-4 mb-5">
+
+                    <label class="radio-label">
+                        <input type="radio" name="sitePerson">
+                        ISP
+                    </label>
+
+                    <label class="radio-label">
+                        <input type="radio" name="sitePerson">
+                        NMT
+                    </label>
+
+                    <label class="radio-label">
+                        <input type="radio" name="sitePerson">
+                        Local Person
+                    </label>
+
+                    <label class="radio-label">
+                        <input type="radio" name="sitePerson">
+                        Technician
+                    </label>
+
+                    <label class="radio-label">
+                        <input type="radio" name="sitePerson">
+                        Security Guard
+                    </label>
+
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+                    <input type="text"
+                        placeholder="Name"
+                        class="custom-input">
+
+                    <input type="text"
+                        placeholder="Number"
+                        class="custom-input">
+
+                </div>
+
+            </div>
+
+            <div class="divider">
+
+                <label class="input-label">
+                    Person Available for Signature
+                </label>
+
+                <div class="flex gap-8 mt-4">
+
+                    <label class="radio-label">
+                        <input type="radio" name="signatureAvailable">
+                        Yes
+                    </label>
+
+                    <label class="radio-label">
+                        <input type="radio" name="signatureAvailable">
+                        No
+                    </label>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- BUTTONS -->
+
+        <div class="flex flex-wrap gap-4 pb-12">
+
+            <button type="submit"
+                class="primary-btn">
+
+                Submit
+
+            </button>
+
+            <button type="reset"
+                class="secondary-btn">
+
+                Clear Form
+
+            </button>
+
+        </div>
+
+    </form>
+
+    <!-- FOOTER -->
+
+    <div class="footer-text">
+
+        <p>&copy; 2026 Mohd Sarim.</p>
+
+        <p class="mt-1">
+
+            Contact:
+
+            <a href="mailto:sarimmohd22@gmail.com"
+                class="text-cyan-700 hover:underline">
+
+                sarimmohd22@gmail.com
+
+            </a>
+
+        </p>
+
+    </div>
+
+</div>
+
+<script>
+
+    const fileField = document.getElementById('fileField');
+    const fileLabel = document.getElementById('fileLabel');
+
+    fileField.addEventListener('change', (e) => {
+
+        if(e.target.files.length > 0){
+
+            fileLabel.textContent = e.target.files[0].name;
+
+        }
+
+        else{
+
+            fileLabel.textContent = "No file chosen";
+
+        }
+
+    });
+
+</script>
+
+</body>
+</html>
