@@ -1,5 +1,5 @@
 // REPLACE THIS WITH YOUR GOOGLE APPS SCRIPT WEB APP URL
-const GOOGLE_APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby_Mock_URL/exec';
+const GOOGLE_APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzHSBdG7c3tpV0oG03yOWdzxIzDwda6dAsE1C_p33CIV8tVGRdZE20i4LaVqhUCaGnd/exec';
 
 document.addEventListener('DOMContentLoaded', () => {
 
