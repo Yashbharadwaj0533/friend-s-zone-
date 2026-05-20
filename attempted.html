@@ -74,6 +74,28 @@
             font-size:13px;
         }
 
+        .meta-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+            gap:12px;
+        }
+
+        .meta-item label{
+            display:block;
+            font-size:13px;
+            font-weight:700;
+            margin-bottom:6px;
+            color:#334155;
+        }
+
+        .meta-item input{
+            width:100%;
+            border:1px solid #d1d5db;
+            border-radius:10px;
+            padding:10px 12px;
+            background:#f8fafc;
+        }
+
         .top-nav{
             display:flex;
             gap:10px;
@@ -119,7 +141,7 @@
         }
 
         .secondary-btn{
-            background:#003b46;
+            background:#6b7280;
             color:white;
             padding:12px 22px;
             border-radius:14px;
@@ -130,7 +152,7 @@
         }
 
         .secondary-btn:hover{
-            background:#022c35;
+            background:#4b5563;
         }
 
         .footer-text{
@@ -217,6 +239,7 @@
                 </label>
 
                 <input type="email"
+                    name="email"
                     required
                     class="custom-input">
 
@@ -231,6 +254,7 @@
                     </label>
 
                     <input type="time"
+                        name="completeTime"
                         required
                         class="custom-input">
 
@@ -245,6 +269,7 @@
                         </label>
 
                         <button type="button"
+                            id="attemptedRefetchBtn"
                             class="text-xs text-cyan-700 font-semibold hover:underline">
                             [ReFetch Data]
                         </button>
@@ -252,6 +277,7 @@
                     </div>
 
                     <input type="date"
+                        name="completeDate"
                         required
                         class="custom-input">
 
@@ -267,7 +293,7 @@
                         Select Engineer Name :
                     </label>
 
-                    <select class="custom-select">
+                    <select id="attemptedEngineerSelect" name="engineerName" class="custom-select">
 
                         <option value="">
                             -- Select --
@@ -283,7 +309,7 @@
                         Select Host Name :
                     </label>
 
-                    <select class="custom-select">
+                    <select id="attemptedHostSelect" name="hostName" class="custom-select">
 
                         <option value="">
                             -- Select --
@@ -540,16 +566,17 @@
 
     <div class="footer-text">
 
-        <p>&copy; 2026 INNOWORQ</p>
+        <p>&copy; 2026 Mohd Sarim.</p>
 
         <p class="mt-1">
 
             Contact:
 
-            <a href="mailto:INNOWORQ@gmail.com"
+            <a href="mailto:sarimmohd22@gmail.com"
                 class="text-cyan-700 hover:underline">
 
-                INNOWORQ@gmail.com
+                sarimmohd22@gmail.com
+
             </a>
 
         </p>
@@ -558,10 +585,14 @@
 
 </div>
 
+<script src="app.js"></script>
 <script>
 
     const fileField = document.getElementById('fileField');
     const fileLabel = document.getElementById('fileLabel');
+    const attemptedForm = document.getElementById('pmtReportForm');
+    const attemptedHostSelect = document.getElementById('attemptedHostSelect');
+    const attemptedEngineerSelect = document.getElementById('attemptedEngineerSelect');
 
     fileField.addEventListener('change', (e) => {
 
@@ -578,6 +609,42 @@
         }
 
     });
+
+    async function initializeAttemptedPage() {
+        try {
+            await PMT.fillSelects({
+                hostSelect: attemptedHostSelect,
+                engineerSelect: attemptedEngineerSelect
+            });
+        } catch (error) {
+            alert(error.message);
+        }
+    }
+
+    attemptedForm.insertBefore(PMT.makeNodeInfoBox(), attemptedForm.children[1]);
+
+    attemptedHostSelect.addEventListener('change', async (e) => {
+        if (!e.target.value) {
+            PMT.clearNode();
+            return;
+        }
+
+        try {
+            const node = await PMT.loadNodeByHost(e.target.value);
+            if (node.engineerName) attemptedEngineerSelect.value = node.engineerName;
+        } catch (error) {
+            alert(error.message);
+        }
+    });
+
+    document.getElementById('attemptedRefetchBtn')?.addEventListener('click', initializeAttemptedPage);
+
+    attemptedForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        PMT.submit('attempted', attemptedForm, attemptedForm.querySelector('.primary-btn'));
+    });
+
+    initializeAttemptedPage();
 
 </script>
 
