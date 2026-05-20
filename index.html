@@ -213,6 +213,7 @@
                 </label>
 
                 <input type="email"
+                    name="email"
                     required
                     class="custom-input">
 
@@ -227,6 +228,7 @@
                     </label>
 
                     <input type="time"
+                        name="completeTime"
                         required
                         class="custom-input">
 
@@ -241,6 +243,7 @@
                         </label>
 
                         <button type="button"
+                            id="refetchBtn"
                             class="text-xs text-cyan-700 font-semibold hover:underline">
                             ReFetch Data
                         </button>
@@ -248,6 +251,7 @@
                     </div>
 
                     <input type="date"
+                        name="completeDate"
                         required
                         class="custom-input">
 
@@ -262,6 +266,7 @@
                 </label>
 
                 <select id="engineerSelect"
+                    name="engineerName"
                     required
                     class="custom-select">
 
@@ -284,6 +289,7 @@
                 </label>
 
                 <select id="hostSelect"
+                    name="hostName"
                     required
                     class="custom-select">
 
@@ -420,7 +426,7 @@
 
     <div class="footer-text">
 
-        <p>&copy; 2026 INNOWORQ</p>
+        <p>&copy; 2026 Mohd Sarim.</p>
 
         <p class="mt-1">
 
@@ -447,40 +453,6 @@
     const fileUpload = document.getElementById('fileUpload');
     const fileName = document.getElementById('fileName');
 
-    const mockNodeData = {
-
-        host1: {
-            crq: "CRQ00001234",
-            date: "2026-05-18",
-            area: "Core NW",
-            tier: "Tier 1",
-            tl: "John Doe",
-            num: "+91 98765 43210",
-            product: "FTTH",
-            city: "New Delhi",
-            state: "Delhi",
-            circle: "DL",
-            region: "North",
-            address: "Okhla Phase 3, Main Server Room"
-        },
-
-        host2: {
-            crq: "CRQ00005678",
-            date: "2026-05-19",
-            area: "Edge NW",
-            tier: "Tier 2",
-            tl: "Jane Smith",
-            num: "+91 87654 32109",
-            product: "5G NSA",
-            city: "Mumbai",
-            state: "Maharashtra",
-            circle: "MH",
-            region: "West",
-            address: "Bandra Kurla Complex, Hub 2"
-        }
-
-    };
-
     fileUpload.addEventListener('change', (e) => {
 
         fileName.textContent =
@@ -494,9 +466,9 @@
 
         const val = e.target.value;
 
-        if (val && mockNodeData[val]) {
+        if (false) {
 
-            const data = mockNodeData[val];
+            const data = {};
 
             document.getElementById('val-crq').textContent = data.crq;
             document.getElementById('val-crq-date').textContent = data.date;
@@ -543,6 +515,43 @@
 
     });
 
+ 
+    // Backend wiring overrides the old demo data above.
+</script>
+
+<script src="app.js"></script>
+<script>
+    async function initializeHomePage() {
+        try {
+            await PMT.fillSelects({ hostSelect, engineerSelect });
+            PMT.setStatus(actionStatus, "Select Hostname first to Start Submitting the Form");
+        } catch (error) {
+            PMT.setStatus(actionStatus, error.message, "error");
+        }
+    }
+
+    hostSelect.addEventListener('change', async (e) => {
+        const host = e.target.value;
+        if (!host) {
+            PMT.clearNode();
+            submitBtn.classList.add('hidden');
+            submitBtn.setAttribute('disabled', true);
+            PMT.setStatus(actionStatus, "Select Hostname first to Start Submitting the Form");
+            return;
+        }
+
+        try {
+            const node = await PMT.loadNodeByHost(host);
+            if (engineerSelect && node.engineerName) engineerSelect.value = node.engineerName;
+            PMT.setStatus(actionStatus, "Host selected. Opening observation page...", "ok");
+            window.location.href = `new.html?host=${encodeURIComponent(host)}`;
+        } catch (error) {
+            PMT.setStatus(actionStatus, error.message, "error");
+        }
+    });
+
+    document.getElementById('refetchBtn')?.addEventListener('click', initializeHomePage);
+    initializeHomePage();
 </script>
 
 </body>
