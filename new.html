@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PMT Observation Report Clone</title>
+    
+</head>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #dbe2ef;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 740px;
+}
+
+.card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #111111;
+    margin-bottom: 16px;
+    line-height: 1.4;
+}
+
+/* Form controls styling */
+.radio-group, .checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Horizontal display adjustments for small options */
+.radio-group:not(.label-stack) {
+    flex-direction: column; 
+}
+
+label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+    color: #444444;
+    cursor: pointer;
+}
+
+input[type="radio"], input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #ffffff;
+    color: #333333;
+    outline: none;
+    cursor: pointer;
+    appearance: none; /* Removes native OS styling for consistency */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+select:focus {
+    border-color: #3f51b5; /* Highlight border on click */
+}
+
+/* Badges for Final Observation */
+.priority-badge {
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.active-badge {
+    display: inline-block;
+    margin-top: 5px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #666;
+}
+
+.meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+}
+
+.meta-item label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.meta-item input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    background: #f8fafc;
+}
+
+/* Button Layout */
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+button {
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-submit {
+    background-color: #3f51b5;
+    color: white;
+}
+
+.btn-clear {
+    background-color: #3f51b5;
+    color: white;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+
+</style>
+<body>
+
+    <div class="form-container">
+        <form id="observationForm">
+            
+             <div class="card">
+             <label class="section-title" for="installed_at">Installed at Shelter/ODC/MSC/BSC/REG *</label>
+             <select id="installed_at" name="installed_at" required>
+              <option value="" disabled selected>Choose Option</option>
+            <option value="SHELTER">SHELTER</option>
+         <option value="REG">REG</option>
+        <option value="MSC">MSC</option>
+        <option value="BSC">BSC</option>
+        <option value="ODC">ODC</option>
+    </select>
+</div>
+
+            <div class="card">
+                <label class="section-title">Rack And Device Mounted Firmly with Nuts and Bolts *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="mounted_firmly" value="Yes"> Yes</label>
+                    <label><input type="radio" name="mounted_firmly" value="No"> No</label>
+                </div>
+            </div>
+
+            <div class="card">
+                <label class="section-title">Dust on device *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="dust_device" value="Low"> Low</label>
+                    <label><input type="radio" name="dust_device" value="Medium"> Medium</label>
+                    <label><input type="radio" name="dust_device" value="High"> High</label>
+                </div>
+            </div>
+
+            <div class="card">
+                <label class="section-title">Dust on Site *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="dust_site" value="Low"> Low</label>
+                    <label><input type="radio" name="dust_site" value="Medium"> Medium</label>
+                    <label><input type="radio" name="dust_site" value="High"> High</label>
+                </div>
+            </div>
+
+            <div class="card">
+                <label class="section-title">Rust Status *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="rust_status" value="Rusty"> Rusty</label>
+                    <label><input type="radio" name="rust_status" value="Not-Rusty"> Not-Rusty</label>
+                </div>
+            </div>
+
+            <div class="card">
+                <label class="section-title">Back Space Available *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="back_space" value="Yes"> Yes</label>
+                    <label><input type="radio" name="back_space" value="No"> No</label>
+                </div>
+            </div>
+
+            <div class="card">
+                <label class="section-title">Rail-Kit Available *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="rail_kit" value="Yes"> Yes</label>
+                    <label><input type="radio" name="rail_kit" value="No"> No</label>
+                </div>
+            </div>
+
+            <div class="card">
+                <label class="section-title">Device Cleaning Done by Engineer from outside *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="cleaning_outside" value="Yes"> Yes</label>
+                    <label><input type="radio" name="cleaning_outside" value="No"> No</label>
+                </div>
+            </div>
+
+            <div class="card">
+                <label class="section-title">Fan Cleaning Done by Engineer *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="fan_cleaning" value="Yes"> Yes</label>
+                    <label><input type="radio" name="fan_cleaning" value="No" checked> No</label>
+                </div>
+            </div>
+
+            <div class="card">
+                <label class="section-title">Device Air Filter Cleaning Done by Engineer *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="filter_cleaning" value="Yes"> Yes</label>
+                    <label><input type="radio" name="filter_cleaning" value="No"> No</label>
+                    <label><input type="radio" name="filter_cleaning" value="NA" checked> NA</label>
+                    <label><input type="radio" name="filter_cleaning" value="Torned"> Torned</label>
+                    <label><input type="radio" name="filter_cleaning" value="Missing"> Missing</label>
+                </div>
+            </div>
+
+            <div class="card">
+                <label class="section-title" for="site_temp">Site Temperature (Degree Celsius) *</label>
+                <select id="site_temp" name="site_temp">
+                    <option value="">Choose</option>
+                    <option value="AC Not Installed">AC Not Installed</option>
+                    <option value="Temp Not Showing">Temp Not Showing</option>
+                    <option value="AC Not Working">AC Not Working</option>
+                    </select>
+            </div>
+
+            <div class="card">
+                <label class="section-title" for="ac_count">AC Count *</label>
+                <select id="ac_count" name="ac_count">
+                    <option value="">Choose</option>
+                    <option value="Above 20">Above 20</option>
+                </select>
+            </div>
+
+            <div class="card">
+                <label class="section-title" for="ac_not_working">AC not working count *</label>
+                <select id="ac_not_working" name="ac_not_working">
+                    <option value="">Choose</option>
+                    </select>
+            </div>
+
+            <div class="card">
+                <label class="section-title">Main Door Proper Closable - Shelter/ODC/TCU Room *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="main_door" value="Yes"> Yes</label>
+                    <label><input type="radio" name="main_door" value="No"> No</label>
+                </div>
+            </div>
+
+            <div class="card">
+                <label class="section-title">Deep Cleaning Required *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="deep_cleaning" value="Yes"> Yes</label>
+                    <label><input type="radio" name="deep_cleaning" value="No"> No</label>
+                </div>
+            </div>
+
+            <div class="card">
+                <label class="section-title">Cable Dressing Status *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="cable_dressing" value="Dressed"> Dressed</label>
+                    <label><input type="radio" name="cable_dressing" value="Undressed"> Undressed</label>
+                    <label><input type="radio" name="cable_dressing" value="Extremely Poor"> Extremely Poor</label>
+                </div>
+            </div>
+
+            <div class="card">
+                <label class="section-title">Alarm on module *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="alarm_module" value="Yes"> Yes</label>
+                    <label><input type="radio" name="alarm_module" value="No"> No</label>
+                </div>
+            </div>
+
+            <div class="card">
+                <label class="section-title">Filler tray Missing *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="filler_missing" value="Yes"> Yes</label>
+                    <label><input type="radio" name="filler_missing" value="No"> No</label>
+                </div>
+            </div>
+
+            <div class="card">
+                <label class="section-title" for="filler_count">Filler Tray missing Count *</label>
+                <select id="filler_count" name="filler_count">
+                    <option value="0" selected>0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+
+            <div class="card">
+                <label class="section-title">SFP Cap missing *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="sfp_missing" value="Yes"> Yes</label>
+                    <label><input type="radio" name="sfp_missing" value="No"> No</label>
+                </div>
+            </div>
+
+            <div class="card">
+                <label class="section-title" for="sfp_count">SFP Cap count *</label>
+                <select id="sfp_count" name="sfp_count">
+                    <option value="NA" selected>NA</option>
+                    <option value="1-5">1-5</option>
+                    <option value="5-10">5-10</option>
+                    <option value="10-20">10-20</option>
+                    <option value="20-30">20-30</option>
+                    <option value="30-40">30-40</option>
+                    <option value="40-50">40-50</option>
+                    <option value="50-60">50-60</option>
+                </select>
+            </div>
+
+            <div class="card">
+                <label class="section-title">Device Serial Number Photos Captured *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="serial_photo" value="Yes"> Yes</label>
+                    <label><input type="radio" name="serial_photo" value="No"> No</label>
+                </div>
+            </div>
+
+            <div class="card">
+                <label class="section-title">Power Status *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="power_status" value="ON"> ON</label>
+                    <label><input type="radio" name="power_status" value="OFF"> OFF</label>
+                </div>
+            </div>
+
+            <div class="card">
+                <label class="section-title">Photos Not Allowed due to MSC/REG/BSC *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="photos_not_allowed" value="Yes" checked> Yes</label>
+                    <label><input type="radio" name="photos_not_allowed" value="No"> No</label>
+                </div>
+            </div>
+
+            <div class="card">
+                <label class="section-title">Proper Gap available between other devices to Cisco device *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="proper_gap" value="Yes"> Yes</label>
+                    <label><input type="radio" name="proper_gap" value="No"> No</label>
+                </div>
+            </div>
+
+            <div class="card">
+                <label class="section-title">Earthing is connected with BUSBAR *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="earthing_busbar" value="Yes"> Yes</label>
+                    <label><input type="radio" name="earthing_busbar" value="No"> No</label>
+                </div>
+            </div>
+
+            <div class="card">
+                <label class="section-title">Final Observation Remarks</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="remarks" value="optimal" checked> ✔ Device health is optimal</label>
+                    <label><input type="checkbox" name="remarks" value="rust"> Rust on Device</label>
+                    <label><input type="checkbox" name="remarks" value="deep_clean"> Deep Cleaning Required</label>
+                    <label><input type="checkbox" name="remarks" value="alarm"> Alarm on Module</label>
+                    <label><input type="checkbox" name="remarks" value="temp_range"> Temperature is not in range &gt; 29°C</label>
+                    <label><input type="checkbox" name="remarks" value="ac_no_show"> AC Temp Not showing</label>
+                    <label><input type="checkbox" name="remarks" value="ac_not_working"> AC is not working</label>
+                    <label><input type="checkbox" name="remarks" value="ac_not_installed"> AC not Installed</label>
+                    <label><input type="checkbox" name="remarks" value="earthing_detached"> Earthing not Attached to Device</label>
+                    <label><input type="checkbox" name="remarks" value="no_rear_space"> Rear Space not available for Fan Cleaning</label>
+                    <label><input type="checkbox" name="remarks" value="rail_kit_blocked"> Rail Kit Available but fan is not removable because of patch cords</label>
+                    <label><input type="checkbox" name="remarks" value="filter_missing"> Air Filter not Installed / Missing</label>
+                    <label><input type="checkbox" name="remarks" value="filter_torn"> Air Filter Torned</label>
+                    <label><input type="checkbox" name="remarks" value="side_filter_missing"> Side Filter missing</label>
+                    <label><input type="checkbox" name="remarks" value="side_filter_torn"> Side Filter Torned</label>
+                    <label><input type="checkbox" name="remarks" value="main_door_issue"> Main Door Issue</label>
+                    <label><input type="checkbox" name="remarks" value="back_door_issue"> Back Door issue</label>
+                    <label><input type="checkbox" name="remarks" value="side_door_issue"> Side Door issue</label>
+                    <label><input type="checkbox" name="remarks" value="sfp_cap_missing"> SFP Cap Missing</label>
+                    <label><input type="checkbox" name="remarks" value="filler_missing_remark"> Filler Tray Missing</label>
+                    <label><input type="checkbox" name="remarks" value="dressing_undressed"> Cable Dressing Status - Undressed</label>
+                    <label><input type="checkbox" name="remarks" value="dressing_poor"> Cable Dressing Status - Extremely Poor</label>
+                    <label><input type="checkbox" name="remarks" value="sn_not_captured"> Device S/N Not Captured Due to Backspace Issue/Missing</label>
+                </div>
+                <div class="priority-badge">PRIORITY STATUS: None</div>
+                <div class="active-badge">ACTIVE STATE</div>
+            </div>
+
+            <div class="card">
+                <label class="section-title" for="other_issues">Enter Other Issues Seperated by comma</label>
+                <input type="text" id="other_issues" name="other_issues" placeholder="Any Other Issues">
+            </div>
+<div class="card">
+    <label class="section-title" for="person_type">Site Person Details *</label>
+    <select id="person_type" name="person_type" required>
+        <option value="" disabled selected>Choose Option</option>
+        <option value="ISP">ISP</option>
+        <option value="NMT">NMT</option>
+        <option value="Local Person">Local Person</option>
+        <option value="Technician">Technician</option>
+        <option value="Security Guard">Security Guard</option>
+        <option value="NA">NA</option>
+    </select>
+    
+    <input type="text" name="person_name" placeholder="Enter Name" style="margin-top: 15px;">
+    <input type="text" name="person_number" placeholder="Enter Number" style="margin-top: 10px;">
+</div>
+
+            <div class="card">
+                <label class="section-title">Person Available for Signature *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="signature_available" value="Yes"> Yes</label>
+                    <label><input type="radio" name="signature_available" value="No"> No</label>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button type="submit" class="btn-submit">Submit</button>
+                <button type="reset" class="btn-clear">Clear Form</button>
+            </div>
+
+        </form>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("observationForm");
+    form.insertBefore(PMT.makeNodeInfoBox(), form.firstElementChild);
+
+    const host = PMT.getHostFromUrl();
+    if (host) {
+        PMT.loadNodeByHost(host).catch(error => alert(error.message));
+    } else {
+        PMT.renderNode(PMT.selectedNode());
+    }
+
+    // 1. Populate Site Temperature (5 to 40)
+    const tempSelect = document.getElementById("site_temp");
+    for (let i = 5; i <= 40; i++) {
+        let option = document.createElement("option");
+        option.value = i;
+        option.textContent = i;
+        tempSelect.appendChild(option);
+    }
+
+    // 2. Populate AC Count (0 to 20)
+    const acCountSelect = document.getElementById("ac_count");
+    for (let i = 0; i <= 20; i++) {
+        let option = document.createElement("option");
+        option.value = i;
+        option.textContent = i;
+        acCountSelect.appendChild(option);
+    }
+
+    // 3. Populate AC Not Working Count (0 to 15)
+    const acNotWorkingSelect = document.getElementById("ac_not_working");
+    for (let i = 0; i <= 15; i++) {
+        let option = document.createElement("option");
+        option.value = i;
+        option.textContent = i;
+        acNotWorkingSelect.appendChild(option);
+    }
+
+    // Handle Form Submit Event
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        PMT.submit("complete", form, form.querySelector(".btn-submit"));
+    });
+});
+    </script>
+</body>
+</html>
