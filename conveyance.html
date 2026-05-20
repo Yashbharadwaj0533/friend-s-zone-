@@ -292,12 +292,12 @@
             <div class="form-group">
                 <label style="display: inline-block;">Activity Complete Date :</label>
                 <button type="button" class="btn-fetch">ReFetch Data</button>
-                <input type="date" id="activityDate" style="margin-top: 8px;">
+                <input type="date" id="activityDate" name="activityDate" style="margin-top: 8px;">
             </div>
 
             <div class="form-group">
                 <label>Select Engineer Name :</label>
-                <select id="engineerName">
+                <select id="engineerName" name="engineerName">
                     <option value="">-- Select Engineer --</option>
                     <option value="Engineer 1">Engineer 1</option>
                     <option value="Engineer 2">Engineer 2</option>
@@ -306,7 +306,7 @@
 
             <div class="form-group">
                 <label>Select Host Name :</label>
-                <select id="hostName">
+                <select id="hostName" name="hostName">
                     <option value="">-- Select Host --</option>
                     <option value="Host 1">Host 1</option>
                     <option value="Host 2">Host 2</option>
@@ -316,18 +316,18 @@
 
         <div class="card">
             <div class="meta-grid">
-                <div class="meta-item"><label>CRQ :</label> <input type="text" placeholder="CRQ"></div>
-                <div class="meta-item"><label>CRQ Create Date :</label> <input type="date"></div>
-                <div class="meta-item"><label>Work Area :</label> <input type="text" placeholder="Work Area"></div>
-                <div class="meta-item"><label>Final Tier :</label> <input type="text" placeholder="Final Tier"></div>
-                <div class="meta-item"><label>Team Leader :</label> <input type="text" placeholder="Team Leader"></div>
-                <div class="meta-item"><label>Engineer Number :</label> <input type="text" placeholder="Engineer Number"></div>
-                <div class="meta-item"><label>Product Name :</label> <input type="text" placeholder="Product Name"></div>
-                <div class="meta-item"><label>City :</label> <input type="text" placeholder="City"></div>
-                <div class="meta-item"><label>State :</label> <input type="text" placeholder="State"></div>
-                <div class="meta-item"><label>TNG Circle :</label> <input type="text" placeholder="TNG Circle"></div>
-                <div class="meta-item"><label>Region :</label> <input type="text" placeholder="Region"></div>
-                <div class="meta-item"><label>Address :</label> <input type="text" placeholder="Address"></div>
+                <div class="meta-item"><label>CRQ :</label> <input type="text" data-node-field="crq" name="crq" placeholder="CRQ"></div>
+                <div class="meta-item"><label>CRQ Create Date :</label> <input type="text" data-node-field="crqCreateDate" name="crqCreateDate"></div>
+                <div class="meta-item"><label>Work Area :</label> <input type="text" data-node-field="workArea" name="workArea" placeholder="Work Area"></div>
+                <div class="meta-item"><label>Final Tier :</label> <input type="text" data-node-field="finalTier" name="finalTier" placeholder="Final Tier"></div>
+                <div class="meta-item"><label>Team Leader :</label> <input type="text" data-node-field="teamLeader" name="teamLeader" placeholder="Team Leader"></div>
+                <div class="meta-item"><label>Engineer Number :</label> <input type="text" data-node-field="engineerNumber" name="engineerNumber" placeholder="Engineer Number"></div>
+                <div class="meta-item"><label>Product Name :</label> <input type="text" data-node-field="productName" name="productName" placeholder="Product Name"></div>
+                <div class="meta-item"><label>City :</label> <input type="text" data-node-field="city" name="city" placeholder="City"></div>
+                <div class="meta-item"><label>State :</label> <input type="text" data-node-field="state" name="state" placeholder="State"></div>
+                <div class="meta-item"><label>TNG Circle :</label> <input type="text" data-node-field="tngCircle" name="tngCircle" placeholder="TNG Circle"></div>
+                <div class="meta-item"><label>Region :</label> <input type="text" data-node-field="region" name="region" placeholder="Region"></div>
+                <div class="meta-item"><label>Address :</label> <input type="text" data-node-field="address" name="address" placeholder="Address"></div>
             </div>
         </div>
 
@@ -337,11 +337,11 @@
             
             <div class="form-group">
                 <label>FE Base/Current Location :</label>
-                <input type="text" id="feLocation" placeholder="FE Base/Current Location">
+                <input type="text" id="feLocation" name="feLocation" placeholder="FE Base/Current Location">
             </div>
             <div class="form-group">
                 <label>Airtel Site Location :</label>
-                <input type="text" id="airtelLocation" placeholder="Airtel Site Location">
+                <input type="text" id="airtelLocation" name="airtelLocation" placeholder="Airtel Site Location">
             </div>
         </div>
 
@@ -358,24 +358,24 @@
 
             <div class="form-group">
                 <label>Enter Total KM Round Trip :</label>
-                <input type="number" id="totalKm" value="0" min="0" oninput="calculateTotal()">
+                <input type="number" id="totalKm" name="totalKm" value="0" min="0" oninput="calculateTotal()">
             </div>
 
             <div class="form-group">
                 <label>Hotel Expenses :</label>
-                <input type="number" id="hotelExpenses" value="0" min="0" oninput="calculateTotal()">
+                <input type="number" id="hotelExpenses" name="hotelExpenses" value="0" min="0" oninput="calculateTotal()">
             </div>
 
             <div class="form-group">
                 <label>Other Expenses :</label>
                 <div class="expense-row">
-                    <select id="expenseType">
+                    <select id="expenseType" name="expenseType">
                         <option value="">-- Select Expense Type --</option>
                         <option value="printout">PMT Checklist Printouts</option>
                         <option value="toolkit">Toolkit Charges</option>
                         <option value="other">Other</option>
                     </select>
-                    <input type="number" id="otherExpenseAmount" value="0" min="0" style="width: 120px;" oninput="calculateTotal()">
+                    <input type="number" id="otherExpenseAmount" name="otherExpenseAmount" value="0" min="0" style="width: 120px;" oninput="calculateTotal()">
                 </div>
             </div>
 
@@ -406,7 +406,42 @@
     </form>
 </div>
 
+<script src="app.js"></script>
 <script>
+    const conveyanceForm = document.getElementById('conveyanceForm');
+    const conveyanceEngineerSelect = document.getElementById('engineerName');
+    const conveyanceHostSelect = document.getElementById('hostName');
+
+    async function initializeConveyancePage() {
+        try {
+            await PMT.fillSelects({
+                hostSelect: conveyanceHostSelect,
+                engineerSelect: conveyanceEngineerSelect
+            });
+        } catch (error) {
+            alert(error.message);
+        }
+    }
+
+    conveyanceHostSelect.addEventListener('change', async (e) => {
+        if (!e.target.value) {
+            PMT.clearNode();
+            return;
+        }
+
+        try {
+            const node = await PMT.loadNodeByHost(e.target.value);
+            if (node.engineerName) conveyanceEngineerSelect.value = node.engineerName;
+        } catch (error) {
+            alert(error.message);
+        }
+    });
+
+    conveyanceForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        PMT.submit('conveyance', conveyanceForm, conveyanceForm.querySelector('.btn-submit'));
+    });
+
     function calculateTotal() {
         // Inputs
         const km = parseFloat(document.getElementById('totalKm').value) || 0;
@@ -439,7 +474,10 @@
     }
 
     // Run calculation once on page initialization
-    window.onload = calculateTotal;
+    window.onload = () => {
+        calculateTotal();
+        initializeConveyancePage();
+    };
 </script>
 
 </body>
